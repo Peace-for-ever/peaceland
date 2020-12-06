@@ -21,5 +21,5 @@ project/*
 .idea
 .vscode
 
-/*.csv
+*.csv
 .scalafmt.conf
