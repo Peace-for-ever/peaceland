@@ -9,7 +9,7 @@
             "args": [],
             "env": {
                 "kafkaHost": "localhost",
-                "kafkaPort": "9093",
+                "kafkaPort": "9092",
                 "kafkaRecordTopic": "records",
                 "kafkaAlertTopic": "alerts",
                 "csvPath": "resources/data/peace.csv",
@@ -24,7 +24,7 @@
             "args": [],
             "env": {
                 "kafkaHost": "localhost",
-                "kafkaPort": "9093",
+                "kafkaPort": "9092",
                 "kafkaRecordTopic": "records",
                 "kafkaAlertTopic": "alerts",
                 "csvPath": "resources/data/peace.csv",
