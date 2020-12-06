@@ -3,17 +3,6 @@ scalaVersion in ThisBuild := "2.12.12"
 
 // PROJECTS
 
-lazy val global = project
-  .in(file("."))
-  .disablePlugins(AssemblyPlugin)
-  .aggregate(
-    core,
-    producer,
-    storage,
-    alerts,
-    stats
-  )
-
 lazy val core = project
   .settings(
     name := "core",
