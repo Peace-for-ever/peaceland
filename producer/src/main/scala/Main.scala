@@ -1,9 +1,11 @@
+package producer
+
 import Producer._
 import java.io.FileReader
+import core.Csv._
+import core.Api._
 import scala.io._
 import models.Config
-import Api._
-import Csv._
 import com.google.gson.Gson
 import java.util.Properties
 import org.apache.kafka.clients.producer.KafkaProducer
