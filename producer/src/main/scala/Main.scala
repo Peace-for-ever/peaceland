@@ -14,12 +14,12 @@ object Main {
   def main(args: Array[String]): Unit = {
 
     val cfg: Config = new Config(
-      sys.env("kafkaHost"),
-      sys.env("kafkaPort"),
-      sys.env("kafkaRecordTopic"),
-      sys.env("csvPath"),
-      sys.env("kafkaAlertTopic"),
-      sys.env("csvPathAlert")
+     "127.0.0.1",
+     "9092",
+      "records",
+      "resources/data/peace.csv",
+      "alert",
+      "resources/data/peaceAlert.csv"
     )
 
     val events = generateEvents(100);

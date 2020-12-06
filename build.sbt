@@ -3,7 +3,7 @@ scalaVersion in ThisBuild := "2.12.12"
 
 // PROJECTS
 
-lazy val core = project
+lazy val core = (project in file("core"))
   .settings(
     name := "core",
     libraryDependencies ++= commonDependencies ++ Seq(
@@ -14,7 +14,7 @@ lazy val core = project
   )
   .disablePlugins(AssemblyPlugin)
 
-lazy val producer = project
+lazy val producer = (project in file("producer"))
   .settings(
     name := "producer",
     libraryDependencies ++= commonDependencies ++ Seq(
@@ -26,7 +26,7 @@ lazy val producer = project
     core
   )
 
-lazy val storage = project
+lazy val storage = (project in file("storage"))
   .settings(
     name := "storage",
     libraryDependencies ++= commonDependencies ++ Seq(
@@ -41,7 +41,7 @@ lazy val storage = project
   )
 
 
-lazy val alerts = project
+lazy val alerts = (project in file("alerts"))
   .settings(
     name := "alerts",
     libraryDependencies ++= commonDependencies ++ Seq(
@@ -52,7 +52,7 @@ lazy val alerts = project
     core
   )
 
-lazy val stats = project
+lazy val stats = (project in file("stats"))
   .settings(
     name := "stats",
     libraryDependencies ++= commonDependencies ++ Seq(
