@@ -34,6 +34,7 @@ lazy val producer = project
     unmanagedResourceDirectories in Runtime += globalResources,
     libraryDependencies ++= commonDependencies ++ Seq(
       dependencies.kafka,
+      dependencies.log4j
     )
   )
   .dependsOn(
@@ -98,7 +99,7 @@ lazy val dependencies =
     val kantan = "com.nrinaudo" %% "kantan.csv-generic" % kantanV
 
     val kafka = "org.apache.kafka" %% "kafka" % kafkaV
-    val log4j = "org.slf4j" %% "slf4j-log4j12" % log4jV
+    val log4j = "org.slf4j" % "slf4j-log4j12" % log4jV
     val gson = "com.google.code.gson" % "gson" % gsonV
 
     val sparkCore = "org.apache.spark" %% "spark-core" % sparkV
