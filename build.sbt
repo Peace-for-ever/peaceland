@@ -45,7 +45,9 @@ lazy val alerts = (project in file("alerts"))
   .settings(
     name := "alerts",
     libraryDependencies ++= commonDependencies ++ Seq(
-      
+      dependencies.sparkCore,
+      dependencies.sparkSQL,
+      dependencies.sparkKafka,
     )
   )
   .dependsOn(

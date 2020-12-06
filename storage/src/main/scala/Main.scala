@@ -23,9 +23,9 @@ object Main {
 			sys.env("kafkaHost"),
 			sys.env("kafkaPort"),
 			sys.env("kafkaRecordTopic"),
-			sys.env("csvPath"),
-			sys.env("kafkaAlertTopic"),
-			sys.env("csvPathAlert")
+			null,
+			null,
+			null
 		)
 		startup(cfg)
 	}

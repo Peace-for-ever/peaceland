@@ -28,10 +28,21 @@
                 "kafkaHost": "localhost",
                 "kafkaPort": "9092",
                 "kafkaRecordTopic": "records",
-                "csvPath": "resources/data/peace.csv",
                 "arangoHost": "localhost:8529",
                 "arangoUser": "root",
                 "arangoPassword": "scala"
+            }
+        },
+        {
+            "type": "scala",
+            "name": "Alerts",
+            "request": "launch",
+            "mainClass": "alerts.Main",
+            "args": [],
+            "env": {
+                "kafkaHost": "localhost",
+                "kafkaPort": "9092",
+                "kafkaAlertTopic": "alerts",
             }
         }
     ],
@@ -39,6 +50,10 @@
         {
             "name": "Producer/Storage",
             "configurations": ["Storage","Producer"]
+        },
+        {
+            "name": "Producer/Alerts",
+            "configurations": ["Alerts","Producer"]
         }
     ]
 }
