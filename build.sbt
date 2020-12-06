@@ -3,6 +3,8 @@ scalaVersion in ThisBuild := "2.12.12"
 
 // PROJECTS
 
+lazy val globalResources = file("resources")
+
 lazy val global = project
   .in(file("."))
   .disablePlugins(AssemblyPlugin)
@@ -17,6 +19,7 @@ lazy val global = project
 lazy val core = project
   .settings(
     name := "core",
+    unmanagedResourceDirectories in Runtime += globalResources,
     libraryDependencies ++= commonDependencies ++ Seq(
       dependencies.sttp,
       dependencies.circe,
@@ -28,6 +31,7 @@ lazy val core = project
 lazy val producer = project
   .settings(
     name := "producer",
+    unmanagedResourceDirectories in Runtime += globalResources,
     libraryDependencies ++= commonDependencies ++ Seq(
       dependencies.kafka,
     )
@@ -39,6 +43,7 @@ lazy val producer = project
 lazy val storage = project
   .settings(
     name := "storage",
+    unmanagedResourceDirectories in Runtime += globalResources,
     libraryDependencies ++= commonDependencies ++ Seq(
       dependencies.sparkCore,
       dependencies.sparkSQL,
@@ -50,9 +55,11 @@ lazy val storage = project
     core
   )
 
+
 lazy val alerts = project
   .settings(
     name := "alerts",
+    unmanagedResourceDirectories in Runtime += globalResources,
     libraryDependencies ++= commonDependencies ++ Seq(
       
     )
@@ -64,6 +71,7 @@ lazy val alerts = project
 lazy val stats = project
   .settings(
     name := "stats",
+    unmanagedResourceDirectories in Runtime += globalResources,
     libraryDependencies ++= commonDependencies ++ Seq(
       
     )
