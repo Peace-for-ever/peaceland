@@ -1,0 +1,41 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "scala",
+            "name": "Producer",
+            "request": "launch",
+            "mainClass": "producer.Main",
+            "args": [],
+            "env": {
+                "kafkaHost": "localhost",
+                "kafkaPort": "9093",
+                "kafkaRecordTopic": "records",
+                "kafkaAlertTopic": "alerts",
+                "csvPath": "resources/data/peace.csv",
+                "csvPathAlert": "resources/data/peaceAlert.csv"
+            }
+        },
+        {
+            "type": "scala",
+            "name": "Storage",
+            "request": "launch",
+            "mainClass": "storage.Main",
+            "args": [],
+            "env": {
+                "kafkaHost": "localhost",
+                "kafkaPort": "9093",
+                "kafkaRecordTopic": "records",
+                "kafkaAlertTopic": "alerts",
+                "csvPath": "resources/data/peace.csv",
+                "csvPathAlert": "resources/data/peaceAlert.csv"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Producer/Storage",
+            "configurations": ["Storage","Producer"]
+        }
+    ]
+}
