@@ -1,11 +1,11 @@
 package models
 
 case class Event(
-	var citizen: String,
-	var message: String,
-	var latitude: Double,
-	var longitude: Double,
-	var date: String,
-	var battery: Int,
-	var temperature: Int
+	val citizen: String,
+	val message: String,
+	val latitude: Double,
+	val longitude: Double,
+	val date: String,
+	val battery: Int,
+	val temperature: Int
 )
