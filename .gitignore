@@ -21,6 +21,8 @@ project/*
 .idea
 .vscode
 !.vscode/launch.json
+!.vscode/tasks.json
+
 
 *.csv
 .scalafmt.conf
