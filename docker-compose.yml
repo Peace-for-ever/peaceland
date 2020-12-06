@@ -1,13 +1,15 @@
 version: '2.1'
 services:
+
   zookeeper:
     restart: always
     image: 'bitnami/zookeeper:latest'
     container_name: zookeeper
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+
   kafka:
-  restart: always
+    restart: always
     image: 'bitnami/kafka:latest'
     container_name: kafka
     ports:
