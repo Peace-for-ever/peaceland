@@ -97,7 +97,7 @@ lazy val dependencies =
     val sparkSQL = "org.apache.spark" %% "spark-sql" % sparkV
     val sparkKafka = "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkV
 
-    val arangodb = "com.arangodb" % "arangodb-spark-connector_2.12" % arangodbV
+    val arangodb = "com.arangodb" %% "arangodb-spark-connector" % arangodbV
   }
 
 lazy val commonDependencies = Seq(
