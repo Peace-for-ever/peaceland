@@ -19,10 +19,10 @@ project/*
 .scala_dependencies
 .worksheet
 .idea
-.vscode
 !.vscode/launch.json
 !.vscode/tasks.json
 
 
 *.csv
 .scalafmt.conf
+.vscode/settings.json

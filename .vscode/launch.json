@@ -1,7 +1,9 @@
 {
+    
     "version": "0.2.0",
     "configurations": [
         {
+            "preLaunchTask": "sleepTask",
             "type": "scala",
             "name": "Producer",
             "request": "launch",
