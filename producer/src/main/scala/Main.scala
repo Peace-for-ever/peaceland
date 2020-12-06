@@ -26,8 +26,6 @@ object Main {
 
     val gson = new Gson
 
-    val topic = cfg.kafkaRecordTopic
-    val alert = cfg.kafkaAlertTopic
     val props = new Properties()
     props.put(
       "bootstrap.servers",
@@ -44,8 +42,8 @@ object Main {
 
     val producer = new KafkaProducer[String, String](props)
 
-    events.head.map(e => Producer.heartbeat(gson.toJson(e), producer, topic))
-    events.head.filter(e => e.battery <= 10).map(e => Producer.heartbeat(gson.toJson(e), producer, alert))
+    events.head.map(e => Producer.heartbeat(gson.toJson(e), producer, cfg.kafkaRecordTopic))
+    events.head.filter(e => e.battery <= 10).map(e => Producer.heartbeat(gson.toJson(e), producer, cfg.kafkaAlertTopic))
 
     writeCsv(cfg.csvPathAlert, events.head.filter(e => e.battery <= 10))
     writeCsv(cfg.csvPath, events.head)
