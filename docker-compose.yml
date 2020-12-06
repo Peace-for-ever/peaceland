@@ -1,0 +1,31 @@
+version: '2.1'
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    container_name: zookeeper
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    image: 'bitnami/kafka:latest'
+    container_name: kafka
+    ports:
+      - '9093:9093'
+    environment: 
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CREATE_TOPICS="records:1:1,alerts:1:1"
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=EXTERNAL://localhost:9093
+      - KAFKA_INTER_BROKER_LISTENER_NAME=EXTERNAL
+    depends_on:
+      - zookeeper
+
+  arangodb:
+    restart: always
+    image: arangodb/arangodb
+    container_name: arangodb
+    ports:
+      - '8529:8529'
+    environment: 
+      - ARANGO_ROOT_PASSWORD=scala
