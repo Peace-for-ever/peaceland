@@ -20,6 +20,7 @@ project/*
 .worksheet
 .idea
 .vscode
+!.vscode/launch.json
 
 *.csv
 .scalafmt.conf

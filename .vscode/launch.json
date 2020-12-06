@@ -28,7 +28,10 @@
                 "kafkaRecordTopic": "records",
                 "kafkaAlertTopic": "alerts",
                 "csvPath": "resources/data/peace.csv",
-                "csvPathAlert": "resources/data/peaceAlert.csv"
+                "csvPathAlert": "resources/data/peaceAlert.csv",
+                "arangoHost": "localhost:8529",
+                "arangoUser": "root",
+                "arangoPassword": "scala"
             }
         }
     ],
