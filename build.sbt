@@ -48,6 +48,7 @@ lazy val alerts = (project in file("alerts"))
       dependencies.sparkCore,
       dependencies.sparkSQL,
       dependencies.sparkKafka,
+      dependencies.sttp
     )
   )
   .dependsOn(
@@ -77,6 +78,7 @@ lazy val dependencies =
     val gsonV = "2.8.6"
     val sparkV = "3.0.1"
     val arangodbV = "1.1.0"
+    val telegramV = "0.5.1"
 
     val sttp = "com.softwaremill.sttp.client3" %% "core" % sttpV
     val circe = "io.circe" %% "circe-parser" % circeV
@@ -91,6 +93,7 @@ lazy val dependencies =
     val sparkKafka = "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkV
 
     val arangodb = "com.arangodb" %% "arangodb-spark-connector" % arangodbV
+    val telegram = "org.augustjune" %% "canoe" % telegramV
   }
 
 lazy val commonDependencies = Seq(
