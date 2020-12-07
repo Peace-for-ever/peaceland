@@ -4,6 +4,7 @@ import org.apache.spark._
 import com.arangodb.spark.ArangoSpark
 import com.arangodb.spark.ReadOptions
 import models.Event
+import core.Utils
 
 object Main {
 	def main(args: Array[String]): Unit = {
@@ -27,11 +28,15 @@ object Main {
 		//country.foreach(x => println(s"${x._1} : ${x._2.size}"))
 		println(s"Countries : ${country.count()}")
 		val angry = country.first()
-		println(s"Country with the most pissed off people: ${angry._1}")
+		println(s"Country with the most pissed off people: ${angry._1} : ${angry._2.size}")
 
 		println("Question 3:")
 
 		println("Question 4:")
+		val weekDays = result.groupBy(x => Utils.strToDate(x.date).getDayOfWeek()).sortBy(x => x._2.size, ascending = false)
+		val weekAngry = weekDays.first()
+		//weekDays.foreach(x => println(s"${x._1} : ${x._2.size}"))
+		println(s"Day of the week with the most pissed off people: ${weekAngry._1} : ${weekAngry._2.size}")
 
 		println("Question 5:")
 		val percent = result.filter(_.battery > 70).count() * 100 / count
