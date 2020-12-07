@@ -11,6 +11,6 @@ case class Event(
 	val country: String
 ) {
   def toAlert(): String = {
-	return s"--ALERT--\n\nBattery: $battery% \nCountry: $country \nLocalisation: http://maps.google.com/maps?q=$latitude,$longitude \nTemperature: $temperature";
+	return s"--ALERT--\n\nBattery: $battery% \nCountry: $country \nLocalisation: http://maps.google.com/maps?q=$latitude,$longitude \nTemperature: $temperature°";
   }
 }
