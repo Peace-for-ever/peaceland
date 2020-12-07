@@ -43,8 +43,8 @@
                 "kafkaHost": "localhost",
                 "kafkaPort": "9092",
                 "kafkaAlertTopic": "alerts",
-                "telegramBotToken": "",
-                "telegramChatID": ""
+                "telegramBotToken": "1373863857:AAFXf-5vJz53QbBBulhz2NvkC5uOuaNEXEM",
+                "telegramChatID": "-236563703"
             }
         }
     ],
