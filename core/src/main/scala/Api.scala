@@ -19,15 +19,12 @@ object Api {
 		val backend = HttpURLConnectionBackend()
 		val response = request.send(backend)
 
-		if (response.code.isSuccess)
-			parse(response.body) match {
+		parse(response.body) match {
+			case Left(error) => None
+			case Right(json) => json.as[List[Event]] match {
 				case Left(error) => None
-				case Right(json) => json.as[List[Event]] match {
-					case Left(error) => None
-					case Right(events) => Option(events)
-				}
+				case Right(events) => Option(events)
 			}
-		else
-			None
+		}
 	}
 }
