@@ -58,8 +58,6 @@ object Main {
         )
       )
 
-    events.foreach(println)
-
     events.foreach(x =>
       basicRequest
         .contentType("application/json")
