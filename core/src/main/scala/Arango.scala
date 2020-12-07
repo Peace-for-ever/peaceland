@@ -19,25 +19,20 @@ object Arango {
 		val backend = HttpURLConnectionBackend()
 		val response = request.send(backend)
 
-		if (response.code.isSuccess)
-		{
-			val collection = new Collection(name)
-			val body = gson.toJson(collection)
-			val jwt = gson.fromJson(response.body, classOf[Jwt])
-			val request = basicRequest
-				.auth.bearer(jwt.jwt)
-				.body(body)
-				.post(uri"http://${sys.env("arangoHost")}/_api/collection")
-				.response(asString.getRight)
+		val collection = new Collection(name)
+		val collectionBody = gson.toJson(collection)
+		val jwt = gson.fromJson(response.body, classOf[Jwt])
+		val requestCollection = basicRequest
+			.auth.bearer(jwt.jwt)
+			.body(collectionBody)
+			.post(uri"http://${sys.env("arangoHost")}/_api/collection")
+			.response(asString.getRight)
 
-			try {
-				request.send(backend)
-			}
-			catch {
-				case e: Exception => None
-			}
+		try {
+			requestCollection.send(backend)
 		}
-		else
-			None
+		catch {
+			case e: Exception => None
+		}
 	}
 }
