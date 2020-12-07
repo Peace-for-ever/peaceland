@@ -7,9 +7,10 @@ case class Event(
     val longitude: Double,
     val date: String,
     val battery: Int,
-    val temperature: Int
+	val temperature: Int,
+	val country: String
 ) {
   def toAlert(): String = {
-	return s"--ALERT--\n\nBattery: $battery% \nLocalisation: http://maps.google.com/maps?q=$latitude,$longitude \nTemperature: $temperature";
+	return s"--ALERT--\n\nBattery: $battery% \nCountry: $country \nLocalisation: http://maps.google.com/maps?q=$latitude,$longitude \nTemperature: $temperature";
   }
 }

@@ -8,8 +8,8 @@ import models.Event
 object Api {
 
 	implicit val eventDecoder: Decoder[Event] = Decoder.
-		forProduct7("citizen", "message", "latitude", "longitude",
-			"date", "battery", "temperature")(Event.apply)
+		forProduct8("citizen", "message", "latitude", "longitude",
+			"date", "battery", "temperature", "country")(Event.apply)
 
 	def generateEvents(amount: Int): Option[List[Event]] = {
 		val request = basicRequest
