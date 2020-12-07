@@ -4,6 +4,7 @@ import java.io.FileReader
 
 import org.apache.spark.sql._
 import models._
+import core.Arango._
 import org.apache.spark._
 import com.arangodb.spark.ArangoSpark
 import org.apache.spark.sql.types._
@@ -18,6 +19,8 @@ object Main {
 		.getOrCreate()
 
 	def main(args: Array[String]): Unit = {
+
+		createCollection("records")
 
 		val cfg: Config = new Config(
 			sys.env("kafkaHost"),
