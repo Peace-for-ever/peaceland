@@ -10,6 +10,6 @@ case class Event(
     val temperature: Int
 ) {
   def toAlert(): String = {
-    return  "Batterie: " + battery+ "\nLocalisation: " + longitude+","+latitude+ "\nTempérature: " + temperature;
+	return s"--ALERT--\n\nBattery: $battery% \nLocalisation: http://maps.google.com/maps?q=$latitude,$longitude \nTemperature: $temperature";
   }
 }
