@@ -59,7 +59,8 @@ lazy val stats = (project in file("stats"))
   .settings(
     name := "stats",
     libraryDependencies ++= commonDependencies ++ Seq(
-      
+      dependencies.arangodb,
+      dependencies.sparkCore,
     )
   )
   .dependsOn(

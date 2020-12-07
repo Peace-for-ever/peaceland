@@ -6,9 +6,9 @@
         {
             "label": "sleepTask",
             "type": "shell",
-            "command": "sleep 6",
+            "command": "sleep 15",
             "windows": {
-                "command": "ping 127.0.0.1 -n 6 > nul"
+                "command": "ping 127.0.0.1 -n 15 > nul"
             },
             "group": "none",
             "presentation": {
