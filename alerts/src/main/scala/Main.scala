@@ -9,6 +9,7 @@ import org.apache.spark.sql.types._
 import com.google.gson.Gson
 import sttp.client3._
 import org.apache.hadoop.fs.DF
+import core.Utils
 
 object Main {
 
@@ -24,6 +25,7 @@ object Main {
     sys.env("kafkaAlertTopic"),
     null
   )
+  val url = Utils.getTelegramUrl(sys.env("telegramBotToken"))
 
   val gson = new Gson
   val message = Message
@@ -62,7 +64,7 @@ object Main {
       basicRequest
         .contentType("application/json")
         .body(gson.toJson(x))
-        .post(uri"${core.Utils.TELEGRAM_URL}")
+        .post(uri"$url")
         .send(backend)
     )
   }
