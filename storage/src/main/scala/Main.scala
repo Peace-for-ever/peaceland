@@ -13,7 +13,7 @@ import com.arangodb.spark.WriteOptions
 
 object Main {
 
-	val spark: SparkSession = SparkSession
+	val spark = SparkSession
 		.builder()
 		.config("spark.master", "local")
 		.getOrCreate()
