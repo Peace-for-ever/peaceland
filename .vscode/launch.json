@@ -46,15 +46,28 @@
                 "telegramBotToken": "1373863857:AAFXf-5vJz53QbBBulhz2NvkC5uOuaNEXEM",
                 "telegramChatID": "-236563703"
             }
-        }
+        },
+        {
+            "type": "scala",
+            "name": "Stats",
+            "request": "launch",
+            "mainClass": "stats.Main",
+            "args": [],
+            "env": {
+                "arangoHost": "localhost:8529",
+                "arangoUser": "root",
+                "arangoPassword": "scala",
+                "kafkaRecordTopic": "records"
+            }
+        },
     ],
     "compounds": [
         {
-            "name": "Producer/Storage",
+            "name": "Storage/Producer",
             "configurations": ["Storage","Producer"]
         },
         {
-            "name": "Producer/Alerts",
+            "name": "Alerts/Producer",
             "configurations": ["Alerts","Producer"]
         }
     ]

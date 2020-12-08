@@ -13,14 +13,14 @@ import com.arangodb.spark.WriteOptions
 
 object Main {
 
-	val spark: SparkSession = SparkSession
+	val spark = SparkSession
 		.builder()
 		.config("spark.master", "local")
 		.getOrCreate()
 
 	def main(args: Array[String]): Unit = {
 
-		createCollection("records")
+		createCollection(sys.env("kafkaRecordTopic"))
 
 		val cfg: Config = new Config(
 			sys.env("kafkaHost"),
@@ -58,7 +58,7 @@ object Main {
 				(data: DataFrame, batchId: Long) =>
 				val events = data.collect().map(row => row.getString(0)).map(x => gson.fromJson(x, classOf[Event]))
 				val df = spark.createDataFrame(events)
-				ArangoSpark.saveDF(df, "records", options)
+				ArangoSpark.saveDF(df, sys.env("kafkaRecordTopic"), options)
 			}
 			.start()
 		query.awaitTermination()
