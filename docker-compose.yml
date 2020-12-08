@@ -13,14 +13,14 @@ services:
     image: 'bitnami/kafka:latest'
     container_name: kafka
     ports:
-      - '9092:9092'
+      - ${KAFKA_PORT}:${KAFKA_PORT}
     environment: 
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CREATE_TOPICS="records:1:1,alerts:1:1"
+      - KAFKA_CREATE_TOPICS="${TOPIC_RECORDS}:1:1,${TOPIC_ALERTS}:1:1"
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=EXTERNAL:PLAINTEXT
-      - KAFKA_CFG_LISTENERS=EXTERNAL://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=EXTERNAL://localhost:9092
+      - KAFKA_CFG_LISTENERS=EXTERNAL://:${KAFKA_PORT}
+      - KAFKA_CFG_ADVERTISED_LISTENERS=EXTERNAL://kafka:${KAFKA_PORT}
       - KAFKA_INTER_BROKER_LISTENER_NAME=EXTERNAL
     depends_on:
       - zookeeper
@@ -30,6 +30,51 @@ services:
     image: arangodb/arangodb
     container_name: arangodb
     ports:
-      - '8529:8529'
+      - ${ARANGO_PORT}:${ARANGO_PORT}
     environment: 
-      - ARANGO_ROOT_PASSWORD=scala
+      - ARANGO_ROOT_PASSWORD=${ARANGO_PASSWORD}
+
+  alerts:
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile
+    command: sbt "alerts/run"
+    environment: 
+      - kafkaHost=kafka
+      - kafkaPort=${KAFKA_PORT}
+      - kafkaAlertTopic=${TOPIC_ALERTS}
+      - telegramBotToken=${TELEGRAM_TOKEN}
+      - telegramChatID=${TELEGRAM_CHATID}
+    depends_on:
+      - kafka
+
+  storage:
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile
+    command: sbt "storage/run"
+    environment: 
+      - kafkaHost=kafka
+      - kafkaPort=${KAFKA_PORT}
+      - kafkaRecordTopic=${TOPIC_RECORDS}
+      - arangoHost=arangodb:${ARANGO_PORT}
+      - arangoUser=${ARANGO_USER}
+      - arangoPassword=${ARANGO_PASSWORD}
+    depends_on:
+      - arangodb
+      - kafka
+
+  producer:
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile
+    command: sbt "producer/run"
+    environment: 
+      - kafkaHost=kafka
+      - kafkaPort=${KAFKA_PORT}
+      - kafkaRecordTopic=${TOPIC_RECORDS}
+      - kafkaAlertTopic=${TOPIC_ALERTS}
+      - csvPath=resources/data/peace.csv
+      - csvPathAlert=resources/data/peaceAlert.csv
+    depends_on:
+      - kafka
