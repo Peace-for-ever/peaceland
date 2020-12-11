@@ -6,10 +6,16 @@ scalaVersion in ThisBuild := "2.12.12"
 lazy val core = (project in file("core"))
   .settings(
     name := "core",
+    PB.targets in Compile := Seq(
+      scalapb.gen(flatPackage = true) -> (sourceManaged in Compile).value
+    ),
     libraryDependencies ++= commonDependencies ++ Seq(
       dependencies.sttp,
       dependencies.circe,
-      dependencies.kantan
+      dependencies.kantan,
+      dependencies.scalaPB,
+      dependencies.grpc,
+      dependencies.scalapbGrpc
     )
   )
   .disablePlugins(AssemblyPlugin)
@@ -84,6 +90,9 @@ lazy val dependencies =
     val sttp = "com.softwaremill.sttp.client3" %% "core" % sttpV
     val circe = "io.circe" %% "circe-parser" % circeV
     val kantan = "com.nrinaudo" %% "kantan.csv-generic" % kantanV
+    val scalaPB = "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf"
+    val grpc = "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion
+    val scalapbGrpc = "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion
 
     val kafka = "org.apache.kafka" %% "kafka" % kafkaV
     val log4j = "org.slf4j" % "slf4j-log4j12" % log4jV

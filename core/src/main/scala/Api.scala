@@ -1,30 +1,28 @@
 package core
 
-import io.circe.Decoder
-import sttp.client3._
-import io.circe.parser._
-import models.Event
+import io.grpc.ManagedChannelBuilder
+import event._
 
 object Api {
 
-	implicit val eventDecoder: Decoder[Event] = Decoder.
-		forProduct8("citizen", "message", "latitude", "longitude",
-			"date", "battery", "temperature", "country")(Event.apply)
+	val channel = ManagedChannelBuilder.forAddress(Utils.GRPC_URL, Utils.GRPC_PORT).usePlaintext().build
 
-	def generateEvents(amount: Int): Option[List[Event]] = {
-		val request = basicRequest
-			.get(uri"${core.Utils.API_URL}/events?amount=$amount")
-			.response(asString.getRight)
+	def generateEvents(amount: Int): Option[List[models.Event]] = {
+		
+		val request = EventRequest()
 
-		val backend = HttpURLConnectionBackend()
-		val response = request.send(backend)
-
-		parse(response.body) match {
-			case Left(error) => None
-			case Right(json) => json.as[List[Event]] match {
-				case Left(error) => None
-				case Right(events) => Option(events)
-			}
-		}
+		val blockingStub = EventServiceGrpc.blockingStub(channel)
+		val reply: EventResponse = blockingStub.eventService(request)
+		
+		Some(reply.events.toList.map(e => models.Event(
+			e.citizen, 
+			e.message, 
+			e.latitude, 
+			e.longitude,
+			e.date.get.seconds,
+			e.battery,
+			e.temperature,
+			e.country
+		)))
 	}
 }

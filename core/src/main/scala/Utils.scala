@@ -5,7 +5,8 @@ import java.time.Instant
 import java.time.ZoneId
 
 object Utils {
-	val API_URL = "https://peaceland.thomaslacaze.fr"
+	val GRPC_URL = "https://peaceland.thomaslacaze.fr"
+	val GRPC_PORT = 80
 	val TELEGRAM_URL = "https://api.telegram.org/bot"
 	val TELEGRAM_MESSAGE_ENDPOINT = "/sendMessage"
 

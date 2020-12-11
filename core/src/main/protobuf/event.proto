@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package event;
+option go_package = "eventpb;eventpb";
+import "google/protobuf/timestamp.proto";
+
+message Event {
+    string citizen = 1;
+	string message = 2;
+	double latitude = 3;
+    double longitude = 4;
+    google.protobuf.Timestamp date = 5;
+	int32 battery = 6;
+	int32 temperature = 7;
+	string country = 8;
+}
+
+message EventRequest {
+    int32 amount = 1;
+}
+
+message EventResponse {
+    repeated Event events = 1;
+}
+
+service EventService {
+    rpc EventService(EventRequest) returns (EventResponse) {};
+}
