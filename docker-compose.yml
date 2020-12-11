@@ -30,6 +30,54 @@ services:
     image: arangodb/arangodb
     container_name: arangodb
     ports:
-      - '8529:8529'
+      - ${ARANGO_PORT}:${ARANGO_PORT}
     environment: 
-      - ARANGO_ROOT_PASSWORD=scala
+      - ARANGO_ROOT_PASSWORD=${ARANGO_PASSWORD}
+
+  alerts:
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile
+    command: sbt "alerts/run"
+    environment: 
+      - kafkaHost=${URI}
+      - kafkaPort=${KAFKA_PORT}
+      - kafkaAlertTopic=alerts
+      - telegramBotToken=${TELEGRAM_TOKEN}
+      - telegramChatID=${TELEGRAM_CHATID}
+    depends_on:
+      - kafka
+    network_mode: host
+
+  storage:
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile
+    command: sbt "storage/run"
+    environment: 
+      - kafkaHost=${URI}
+      - kafkaPort=${KAFKA_PORT}
+      - kafkaRecordTopic=records
+      - arangoHost=${URI}:${ARANGO_PORT}
+      - arangoUser=${ARANGO_USER}
+      - arangoPassword=${ARANGO_PASSWORD}
+    depends_on:
+      - arangodb
+      - kafka
+    network_mode: host
+
+  producer:
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile
+    command: sbt "producer/run"
+    environment: 
+      - kafkaHost=${URI}
+      - kafkaPort=${KAFKA_PORT}
+      - kafkaRecordTopic=records
+      - kafkaAlertTopic=alerts
+      - csvPath=resources/data/peace.csv
+      - csvPathAlert=resources/data/peaceAlert.csv
+    depends_on:
+      - kafka
+    network_mode: host
