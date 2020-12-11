@@ -40,7 +40,7 @@ object Main {
 		println("Question 3:")
 
 		println("Question 4:")
-		val weekDays = result.groupBy(x => Utils.strToDate(x.date).getDayOfWeek()).sortBy(x => x._2.size, ascending = false)
+		val weekDays = result.groupBy(x => Utils.timestampToDate(x.date).getDayOfWeek()).sortBy(x => x._2.size, ascending = false)
 		val weekAngry = weekDays.first()
 		//weekDays.foreach(x => println(s"${x._1} : ${x._2.size}"))
 		println(s"Day of the week with the most pissed off people: ${weekAngry._1} : ${weekAngry._2.size}")
