@@ -9,11 +9,11 @@ object Api {
 
 	def generateEvents(amount: Int): Option[List[models.Event]] = {
 		
-		val request = EventRequest()
+		val request = EventRequest(amount)
 
 		val blockingStub = EventServiceGrpc.blockingStub(channel)
 		val reply: EventResponse = blockingStub.eventService(request)
-		
+
 		Some(reply.events.toList.map(e => models.Event(
 			e.citizen, 
 			e.message, 
