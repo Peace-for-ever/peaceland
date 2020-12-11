@@ -23,7 +23,7 @@ object Main {
 		
 		println("Question 1:")
 		val partDay = result.groupBy(x => {
-			val hour = Utils.strToDate(x.date).getHour()
+			val hour = Utils.timestampToDate(x.date).getHour()
 			if(hour >= 0 && hour < 12) "morning" else "evening"
 		}).sortBy(x => x._2.size, ascending = false)
 		//partDay.foreach(x => println(s"${x._1} : ${x._2.size}"))

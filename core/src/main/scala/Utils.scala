@@ -14,8 +14,8 @@ object Utils {
 		s"$TELEGRAM_URL$botToken$TELEGRAM_URL"
 	}
 
-	def strToDate(str: String): LocalDateTime = {
-		val tmp = Instant.parse(str)
+	def timestampToDate(ts: Long): LocalDateTime = {
+		val tmp = Instant.ofEpochSecond(ts)
 		LocalDateTime.ofInstant(tmp, ZoneId.systemDefault())
 	}
 }
