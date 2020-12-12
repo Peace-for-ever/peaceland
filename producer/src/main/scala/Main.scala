@@ -43,9 +43,11 @@ object Main {
     val producer = new KafkaProducer[String, String](props)
 
     events.head.map(e => Producer.heartbeat(gson.toJson(e), producer, cfg.kafkaRecordTopic))
-    events.head.filter(e => e.battery <= 10).map(e => Producer.heartbeat(gson.toJson(e), producer, cfg.kafkaAlertTopic))
+    
+    val alerts = events.head.filter(e => e.battery <= 10)
+    alerts.map(e => Producer.heartbeat(gson.toJson(e), producer, cfg.kafkaAlertTopic))
 
-    writeCsv(cfg.csvPathAlert, events.head.filter(e => e.battery <= 10))
+    writeCsv(cfg.csvPathAlert, alerts)
     writeCsv(cfg.csvPath, events.head)
 
     producer.close()
