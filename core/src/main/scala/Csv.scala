@@ -6,7 +6,7 @@ import Api.generateEvents
 import models._
 import kantan.csv._
 import kantan.csv.ops._
-import kantan.csv.generic._ // Automatic derivation of codecs.
+import kantan.csv.generic._
 
 object Csv {
 
