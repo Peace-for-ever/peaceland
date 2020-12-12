@@ -47,5 +47,8 @@ object Main {
 		println("Question 5:")
 		val percent = result.filter(_.battery > 70).count() * 100 / count
 		println(s"There is $percent% of drones with more than 70% of battery")
+
+		sc.stop()
+		System.exit(0)
 	}
 }
