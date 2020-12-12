@@ -30,7 +30,7 @@ services:
     image: arangodb/arangodb
     container_name: arangodb
     ports:
-      - ${ARANGO_PORT}:${ARANGO_PORT}
+      - ${ARANGO_PORT}:8529
     environment: 
       - ARANGO_ROOT_PASSWORD=${ARANGO_PASSWORD}
 
@@ -90,4 +90,4 @@ services:
     container_name: peace-api
     restart: always
     ports: 
-      - 8083:8083
+      - ${GRPC_PORT}:8083
