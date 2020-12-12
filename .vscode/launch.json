@@ -15,7 +15,9 @@
                 "kafkaRecordTopic": "records",
                 "kafkaAlertTopic": "alerts",
                 "csvPath": "resources/data/peace.csv",
-                "csvPathAlert": "resources/data/peaceAlert.csv"
+                "csvPathAlert": "resources/data/peaceAlert.csv",
+                "GRPC_URL": "localhost",
+                "GRPC_PORT": "8083"
             }
         },
         {

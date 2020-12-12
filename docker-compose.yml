@@ -64,6 +64,7 @@ services:
     depends_on:
       - arangodb
       - kafka
+      - peaceapi
     network_mode: host
 
   producer:
@@ -78,6 +79,15 @@ services:
       - kafkaAlertTopic=alerts
       - csvPath=resources/data/peace.csv
       - csvPathAlert=resources/data/peaceAlert.csv
+      - GRPC_URL=${URI}
+      - GRPC_PORT=${GRPC_PORT}
     depends_on:
       - kafka
     network_mode: host
+
+  peaceapi:
+    image: thomaslacaze/peace-api:latest
+    container_name: peace-api
+    restart: always
+    ports: 
+      - 8083:8083

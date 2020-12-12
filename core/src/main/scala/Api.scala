@@ -5,7 +5,7 @@ import event._
 
 object Api {
 
-	val channel = ManagedChannelBuilder.forAddress(Utils.GRPC_URL, Utils.GRPC_PORT).usePlaintext().build
+	val channel = ManagedChannelBuilder.forAddress(sys.env("GRPC_URL"),sys.env("GRPC_PORT").toInt).usePlaintext().build
 
 	def generateEvents(amount: Int): Option[List[models.Event]] = {
 		
