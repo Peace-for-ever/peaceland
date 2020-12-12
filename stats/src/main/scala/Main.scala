@@ -11,10 +11,9 @@ object Main {
 		val conf = new SparkConf()
 			.setAppName("Stats")
 			.setMaster("local[*]")
-			.set("arangodb.host", "localhost")
-    		.set("arangodb.port", "8529")
-			.set("arangodb.user", "root")
-			.set("arangodb.password", "scala")
+			.set("arangodb.host", sys.env("arangoHost"))
+			.set("arangodb.user", sys.env("arangoUser"))
+			.set("arangodb.password", sys.env("arangoPassword"))
 		
 		val sc = new SparkContext(conf)
 
