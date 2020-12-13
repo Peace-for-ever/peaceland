@@ -50,23 +50,20 @@ object Main {
   }
 
   def DFProcessing(data: DataFrame, batchId: Long) {
-    val events = data
+    data
       .collect()
       .map(row => row.getString(0))
-      .map(x =>
-        message.apply(
+      .map(x => {
+        val msg = message.apply(
           sys.env("telegramChatID"),
           gson.fromJson(x, classOf[Event]).toAlert()
         )
-      )
-
-    events.foreach(x =>
-      basicRequest
+        basicRequest
         .contentType("application/json")
-        .body(gson.toJson(x))
+        .body(gson.toJson(msg))
         .post(uri"$url")
         .send(backend)
-    )
+      })
   }
 
 }
