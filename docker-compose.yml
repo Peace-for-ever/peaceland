@@ -85,6 +85,19 @@ services:
       - kafka
     network_mode: host
 
+  stats:
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile
+    command: sbt "stats/run"
+    environment: 
+      - arangoHost=${URI}:${ARANGO_PORT}
+      - arangoUser=${ARANGO_USER}
+      - arangoPassword=${ARANGO_PASSWORD}
+    depends_on:
+      - arangodb
+    network_mode: host
+
   peaceapi:
     image: thomaslacaze/peace-api:latest
     container_name: peace-api
