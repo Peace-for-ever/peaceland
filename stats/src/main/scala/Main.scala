@@ -25,7 +25,7 @@ object Main {
 			val hour = Utils.timestampToDate(x.date).getHour()
 			if(hour >= 0 && hour < 12) "morning" else "evening"
 		}).sortBy(x => x._2.size, ascending = false)
-		//partDay.foreach(x => println(s"${x._1} : ${x._2.size}"))
+		partDay.foreach(x => println(s"${x._1} : ${x._2.size}"))
 		val angryHour = partDay.first()
 		println(s"The most pissed off people are in the ${angryHour._1} : ${angryHour._2.size}")
 
@@ -41,7 +41,7 @@ object Main {
 		println("Question 4:")
 		val weekDays = result.groupBy(x => Utils.timestampToDate(x.date).getDayOfWeek()).sortBy(x => x._2.size, ascending = false)
 		val weekAngry = weekDays.first()
-		//weekDays.foreach(x => println(s"${x._1} : ${x._2.size}"))
+		weekDays.foreach(x => println(s"${x._1} : ${x._2.size}"))
 		println(s"Day of the week with the most pissed off people: ${weekAngry._1} : ${weekAngry._2.size}")
 
 		println("Question 5:")
