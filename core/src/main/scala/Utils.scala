@@ -9,7 +9,7 @@ object Utils {
 	val TELEGRAM_MESSAGE_ENDPOINT = "/sendMessage"
 
 	def getTelegramUrl(botToken: String): String = {
-		s"$TELEGRAM_URL$botToken$TELEGRAM_URL"
+		s"$TELEGRAM_URL$botToken$TELEGRAM_MESSAGE_ENDPOINT"
 	}
 
 	def timestampToDate(ts: Long): LocalDateTime = {
