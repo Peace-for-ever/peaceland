@@ -22,7 +22,7 @@ object Main {
       sys.env("csvPathAlert")
     )
 
-    val events = generateEvents(50);
+    val events = generateEvents(1000);
 
     val gson = new Gson
 
