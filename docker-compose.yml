@@ -83,6 +83,7 @@ services:
       - GRPC_PORT=${GRPC_PORT}
     depends_on:
       - kafka
+      - peaceapi
     network_mode: host
 
   stats:
