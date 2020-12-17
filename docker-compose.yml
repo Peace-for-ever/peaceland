@@ -105,3 +105,24 @@ services:
     restart: always
     ports: 
       - ${GRPC_PORT}:8083
+
+  peaceviewer:
+    image: thomaslacaze/peace-viewer:latest
+    container_name: peace-viewer
+    restart: always
+    environment: 
+      - arangoHost=http://${URI}:${ARANGO_PORT}
+      - arangoUser=${ARANGO_USER}
+      - arangoPassword=${ARANGO_PASSWORD}
+      - kafkaHost=${URI}
+      - kafkaPort=${KAFKA_PORT}
+      - kafkaRecordTopic=records
+    ports: 
+      - 3001:3000
+    depends_on:
+      - arangodb
+      - kafka
+      - peaceapi
+      - alerts
+      - storage
+    network_mode: host
