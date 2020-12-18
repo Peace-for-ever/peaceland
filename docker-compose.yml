@@ -39,6 +39,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     command: sbt "alerts/run"
+    container_name: peace-alerts
     environment: 
       - kafkaHost=${URI}
       - kafkaPort=${KAFKA_PORT}
@@ -54,6 +55,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     command: sbt "storage/run"
+    container_name: peace-storage
     environment: 
       - kafkaHost=${URI}
       - kafkaPort=${KAFKA_PORT}
@@ -72,6 +74,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     command: sbt "producer/run"
+    container_name: peace-producer
     environment: 
       - kafkaHost=${URI}
       - kafkaPort=${KAFKA_PORT}
@@ -91,6 +94,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     command: sbt "stats/run"
+    container_name: peace-stats
     environment: 
       - arangoHost=${URI}:${ARANGO_PORT}
       - arangoUser=${ARANGO_USER}
@@ -118,7 +122,7 @@ services:
       - kafkaPort=${KAFKA_PORT}
       - kafkaRecordTopic=records
     ports: 
-      - 3001:3000
+      - 3001:3001
     depends_on:
       - arangodb
       - kafka
