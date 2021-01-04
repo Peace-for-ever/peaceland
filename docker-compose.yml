@@ -115,7 +115,7 @@ services:
     container_name: peace-viewer
     restart: always
     environment: 
-      - arangoHost=http://${URI}:${ARANGO_PORT}
+      - arangoHost=${URI}:${ARANGO_PORT}
       - arangoUser=${ARANGO_USER}
       - arangoPassword=${ARANGO_PASSWORD}
       - kafkaHost=${URI}
