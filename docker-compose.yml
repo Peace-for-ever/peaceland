@@ -74,7 +74,6 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     command: sbt "producer/run"
-    container_name: peace-producer
     environment: 
       - kafkaHost=${URI}
       - kafkaPort=${KAFKA_PORT}
