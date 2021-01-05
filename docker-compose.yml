@@ -67,6 +67,7 @@ services:
       - arangodb
       - kafka
       - peaceapi
+      - alerts
     network_mode: host
 
   producer:
