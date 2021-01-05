@@ -3,14 +3,14 @@ services:
 
   zookeeper:
     restart: always
-    image: 'bitnami/zookeeper:latest'
+    image: bitnami/zookeeper:3.6.2
     container_name: zookeeper
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
   kafka:
     restart: always
-    image: 'bitnami/kafka:latest'
+    image: bitnami/kafka:2.7.0
     container_name: kafka
     ports:
       - '9092:9092'
@@ -27,7 +27,7 @@ services:
 
   arangodb:
     restart: always
-    image: arangodb/arangodb
+    image: arangodb/arangodb:3.6.10
     container_name: arangodb
     ports:
       - ${ARANGO_PORT}:8529
