@@ -7,7 +7,6 @@
 ```bash
 $ docker-compose up storage
 $ docker-compose up producer
-$ 
 ```
 
 ```bash
