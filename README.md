@@ -1,5 +1,6 @@
 # peaceland
 
+![](stack.png)
 
 ## Launch project
 
