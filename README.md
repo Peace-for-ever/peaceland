@@ -8,7 +8,7 @@ Course : M1 - APP Scala
 
 ## Launch project
 
-To start everything you need, you can use the command below. 
+To start everything you need, you can start the `Storage` project using the command below.
 
 Just wait for the `Alerts` and `Storage` projects to be completely built.
 
@@ -62,7 +62,7 @@ We use the `Telegram` Rest api to send custom messages in a group.
 
 Start the `Peace-viewer` to display a 3d globe containing all the data inside the database.
 
-This globe is dynamic. It means, you can start a or many `Producer` and the displayed data will update automatically.
+This globe is dynamic. It means, you can start one or many `Producer` and the displayed data will update automatically.
 ```bash
 $ docker-compose up peaceviewer
 ```
