@@ -6,6 +6,22 @@ Course : M1 - APP Scala
 
 ![](images/stack.png)
 
+## Installation
+
+Clone this project and make sure you have installed [`docker`](https://www.docker.com/) and [`docker-compose`](https://docs.docker.com/compose/) on your system.
+
+```bash
+git clone https://github.com/Peace-for-ever/peaceland.git
+```
+
+All images are available on [Docker Hub](https://hub.docker.com/).
+
+- [Zookeeper](https://hub.docker.com/r/bitnami/zookeeper)
+- [Kafka](https://hub.docker.com/r/bitnami/kafka)
+- [Arangodb](https://hub.docker.com/_/arangodb)
+- [Peace-api](https://hub.docker.com/r/thomaslacaze/peace-api)
+- [Peace-viewer](https://hub.docker.com/r/thomaslacaze/peace-viewer)
+
 ## Launch project
 
 To start everything you need, you can start the `Storage` project using the command below.
