@@ -8,15 +8,15 @@ Course : M1 - APP Scala
 
 ## Launch project
 
-To start almost everything you can use the command below.Just wait for the Alerts & Storage projects to be completely built.
+To start almost everything you can use the command below. Just wait for the Alerts & Storage projects to be completely built.
 
 This will start:
 - Zookeeper
 - Kafka
 - Peace-api
 - Arangodb
-- Alerts
-- Storage
+- Alerts (take time to build)
+- Storage (take time to build)
 
 ```bash
 $ docker-compose up storage
@@ -38,9 +38,13 @@ This word will be defined as `PresidentWord` for this generation of events (in a
 
 Then we analyze again all the events and if there is no occurences of the `PresidentWord` in the sentence we will send this event in the Kafka stream.
 
-All these filtered events are stored in a document database, ArangoDB.
+All these filtered events are stored in a multi-model graph database, ArangoDB.
 
 ![](images/storage.png)
+
+Model of an event
+
+![](images/event.png)
 
 ## Alerts
 
