@@ -63,6 +63,9 @@ We use the `Telegram` Rest api to send custom messages in a group.
 Start the `Peace-viewer` to display a 3d globe containing all the data inside the database.
 
 This globe is dynamic. It means, you can start one or many `Producer` and the displayed data will update automatically.
+
+The colour code is set according to the number of data at the same location. In this case, in the same city.
+
 ```bash
 $ docker-compose up peaceviewer
 ```
