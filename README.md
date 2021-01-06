@@ -27,6 +27,9 @@ All images are available on [Docker Hub](https://hub.docker.com/).
 To start everything you need, you can start the `Storage` project using the command below.
 
 Just wait for the `Alerts` and `Storage` projects to be completely built.
+```bash
+$ docker-compose up storage
+```
 
 This will start:
 - Zookeeper
@@ -35,10 +38,6 @@ This will start:
 - Arangodb
 - Alerts (take time to build)
 - Storage (take time to build)
-
-```bash
-$ docker-compose up storage
-```
 
 ## Data generation
 
@@ -77,14 +76,14 @@ We use the `Telegram` Rest api to send custom messages in a group.
 ## Visualization
 
 Start the `Peace-viewer` to display a 3d globe containing all the data inside the database.
+```bash
+$ docker-compose up peaceviewer
+```
 
 This globe is dynamic. It means, you can start one or many `Producer` and the displayed data will update automatically.
 
 The colour code is set according to the number of data at the same location. In this case, in the same city.
 
-```bash
-$ docker-compose up peaceviewer
-```
 ![](images/globe.png)
 
 ## More data generation
