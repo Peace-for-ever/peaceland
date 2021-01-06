@@ -42,10 +42,8 @@ object Main {
 	def question2(result: ArangoRDD[Event]) {
 		println("\nQuestion 2:")
 		val country = result.groupBy(_.country).top(5)(Ordering[Int].on(_._2.size))
+		println("Top 5 coutries with the most pissed of people:")
 		country.foreach(x => println(s"${x._1} : ${x._2.size}"))
-		println(s"Countries : ${country.length}")
-		val angry = country(0)
-		println(s"Country with the most pissed off people: ${angry._1} : ${angry._2.size}")
 	}
 
 	def question3(result: ArangoRDD[Event], count: Long) {
