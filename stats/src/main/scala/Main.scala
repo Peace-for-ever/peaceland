@@ -58,8 +58,8 @@ object Main {
 		println("\nQuestion 4:")
 		val weekDays = result.groupBy(x => Utils.timestampToDate(x.date).getDayOfWeek()).sortBy(_._2.size, ascending = false)
 		val weekAngry = weekDays.first()
+		println(s"Days of the week with the most pissed off people:")
 		weekDays.foreach(x => println(s"${x._1} : ${x._2.size}"))
-		println(s"Day of the week with the most pissed off people: ${weekAngry._1} : ${weekAngry._2.size}")
 	}
 
 	def question5(result: ArangoRDD[Event], count: Long) {
