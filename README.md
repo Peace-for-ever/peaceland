@@ -54,6 +54,8 @@ Model of an event
 
 We also send alerts to `Telegram` if the battery of the drone is lower or equal to 5%.
 
+We use the `Telegram` Rest api to send custom messages in a group.
+
 ![](images/telegram.png)
 
 ## Visualization
