@@ -28,7 +28,7 @@ To start everything you need, you can start the `Storage` project using the comm
 
 Just wait for the `Alerts` and `Storage` projects to be completely built.
 ```bash
-$ docker-compose up storage
+$ docker compose up storage
 ```
 
 This will start:
@@ -43,7 +43,7 @@ This will start:
 
 Start the `Producer` to generate 1000 events.
 ```bash
-$ docker-compose up producer
+$ docker compose up producer
 ```
 
 All the events are generated using the `Peace-api` written in GO. The api is compatible with REST (on the branch `apiRest`) and GRPC.
@@ -77,7 +77,7 @@ We use the `Telegram` Rest api to send custom messages in a group.
 
 Start the `Peace-viewer` to display a 3d globe containing all the data inside the database.
 ```bash
-$ docker-compose up peaceviewer
+$ docker compose up peaceviewer
 ```
 
 This globe is dynamic. It means, you can start one or many `Producer` and the displayed data will update automatically.
@@ -90,14 +90,14 @@ The colour code is set according to the number of data at the same location. In 
 
 If you want to generate more data, just scale the amount of `Producer` to start.
 ```bash
-$ docker-compose up --scale producer=2 producer
+$ docker compose up --scale producer=2 producer
 ```
 
 ## Analytics
 
 You can analyse the data in the database by running the `Stats` project.
 ```bash
-$ docker-compose up stats
+$ docker compose up stats
 ```
 
 ![](images/stats.png)
