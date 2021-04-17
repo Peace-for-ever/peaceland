@@ -1,6 +1,8 @@
 package core
 
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Paths
 
 import Api.generateEvents
 import models._
@@ -11,6 +13,12 @@ import kantan.csv.generic._
 object Csv {
 
 	def writeCsv(path: String, events: List[Event]): Unit = {
+		try {
+			Files.createDirectories(Paths.get(path).getParent())
+		}
+		catch {
+			case _: Throwable => println(path + " has no parent directories")
+		}
 		new File(path).writeCsv[Event](events, rfc)
 	}
 
